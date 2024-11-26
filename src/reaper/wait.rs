@@ -132,7 +132,7 @@ impl ChildGuard {
 }
 
 cfg_if::cfg_if! {
-    if #[cfg(any(target_os = "linux"))] {
+    if #[cfg(target_os = "linux")] {
         use async_io::Async;
         use rustix::process;
         use std::os::unix::io::OwnedFd;
@@ -242,7 +242,6 @@ cfg_if::cfg_if! {
                     )))?
                 };
 
-
                 Ok(Self {
                     handle: exit_filter,
                     child: child,
@@ -270,5 +269,4 @@ cfg_if::cfg_if! {
             true
         }
     }
-
 }
